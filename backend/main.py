@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from langgraph.graph import StateGraph, END
-from langchain_gradientai import ChatGradientAI
+from langchain_gradient import ChatGradient
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -13,7 +13,7 @@ load_dotenv()
 # Set your Gradient API key as an environment variable
 DIGITALOCEAN_INFERENCE_KEY = os.getenv("DIGITALOCEAN_INFERENCE_KEY")
 
-llm = ChatGradientAI(
+llm = ChatGradient(
     api_key=DIGITALOCEAN_INFERENCE_KEY,
     temperature=0.7,
     model="llama3.3-70b-instruct"
