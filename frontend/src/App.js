@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import ProductForm from './components/ProductForm';
@@ -7,12 +7,34 @@ import { Loader2 } from 'lucide-react';
 import './index.css';
 
 // Use environment variable for API URL, fallback to localhost for development
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+let API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+
+// Clean up API URL - remove trailing slash
+API_URL = API_URL.replace(/\/$/, '');
 
 function App() {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // Test API connection on component mount
+  useEffect(() => {
+    const testConnection = async () => {
+      try {
+        console.log('🔍 Testing API connection to:', `${API_URL}/health`);
+        const response = await axios.get(`${API_URL}/health`, {
+          timeout: 10000 // 10 second timeout
+        });
+        console.log('✅ API connection successful:', response.data);
+      } catch (err) {
+        console.error('❌ API connection failed:', err.message);
+        console.error('API URL:', API_URL);
+        console.error('Full error:', err);
+      }
+    };
+
+    testConnection();
+  }, []);
 
   const handleSubmit = async (formData) => {
     setLoading(true);
@@ -20,7 +42,7 @@ function App() {
     setResults(null);
 
     try {
-      const response = await axios.post(`${API_URL}/api/launch_assistant`, formData, {
+      const response = await axios.post(`${API_URL}/launch_assistant`, formData, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -5,13 +5,17 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies (need dev dependencies for build)
+RUN npm ci
 
 # Copy frontend source
 COPY . ./
 
-# Build the React app
+# Build argument for API URL (available during build)
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL=$REACT_APP_API_URL
+
+# Build the React app (environment variables baked in here)
 RUN npm run build
 
 # Install serve to serve the built app
