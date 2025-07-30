@@ -177,6 +177,15 @@ product-launch-assistant/
 }
 ```
 
+## 🤖 **AI Model Recommendations**
+
+Based on testing, these models have delivered good results:
+
+- **`llama3.3-70b-instruct`** - Great balance of quality and cost
+- **`openai-gpt-4o`** - Best quality, higher cost
+
+Configure in `backend/main.py` by updating the `model` parameter.
+
 ## 🔧 **Environment Variables**
 
 ### **Backend (.env)**
