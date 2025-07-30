@@ -1,0 +1,53 @@
+name: product-launch-assistant
+region: nyc
+
+services:
+  # Backend API Component
+  - name: api
+    source_dir: /backend
+    github:
+      repo: bnarasimha21/product-launch-assistant
+      branch: main
+    dockerfile_path: /backend/Dockerfile
+    build_command: ""
+    run_command: python main.py
+    environment_slug: python
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8000
+    routes:
+      - path: /api
+    health_check:
+      http_path: /api/health
+      initial_delay_seconds: 10
+      period_seconds: 10
+      timeout_seconds: 5
+      success_threshold: 1
+      failure_threshold: 3
+    envs:
+      - key: PORT
+        value: "8000"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: DIGITALOCEAN_INFERENCE_KEY
+        value: ${DIGITALOCEAN_INFERENCE_KEY}
+        type: SECRET
+
+  # Frontend Component
+  - name: frontend
+    source_dir: /frontend
+    github:
+      repo: bnarasimha21/product-launch-assistant
+      branch: main
+    dockerfile_path: /frontend/Dockerfile
+    build_command: npm run build
+    run_command: serve -s build -l 3000
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 3000
+    routes:
+      - path: /
+    envs:
+      - key: REACT_APP_API_URL
+        value: ${api.PUBLIC_URL} 
