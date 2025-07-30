@@ -19,7 +19,6 @@ A comprehensive AI-powered product launch planning tool that generates market re
 - **🤖 AI-Powered Analysis**: Uses LangGraph workflow with DigitalOcean's Inference API
 - **📊 Comprehensive Planning**: Generates 5 key sections for product launch
 - **🎨 Modern UI**: Beautiful, responsive React interface with step-by-step workflow
-- **⚡ Real-time Processing**: Live AI generation with progress tracking
 - **📱 Mobile Friendly**: Works seamlessly on desktop and mobile devices
 - **🔄 2-Component Architecture**: Scalable frontend/backend separation for DigitalOcean App Platform
 - **📋 Export Options**: Download your complete launch plan
@@ -115,7 +114,7 @@ product-launch-assistant/
 
 ## 🚢 **DigitalOcean App Platform Deployment**
 
-### **Manual Setup (Recommended)**
+### **Manual Setup**
 
 1. **Create App** in DigitalOcean App Platform
 2. **Connect Repository** and configure 2 services:
@@ -158,9 +157,9 @@ product-launch-assistant/
 **Example Request**:
 ```json
 {
-  "product_name": "Smart Fitness Mirror",
-  "product_details": "Interactive home gym mirror with AI personal trainer, real-time form correction, and 500+ workout classes",
-  "target_market": "Busy professionals aged 28-45 who want premium home fitness experiences"
+  "product_name": "Trendy tote bags with bold designs and Gen Z slogans",
+  "product_details": "Trendy tote bags made from eco-friendly materials, featuring bold graphics and Gen Z-inspired slogans. Durable, stylish, and perfect for everyday use.",
+  "target_market": "Gen Z teens and young adults who love fashion, self-expression, and pop culture trends."
 }
 ```
 
@@ -200,5 +199,5 @@ REACT_APP_API_URL=${api.PUBLIC_URL}
 
 - **API Documentation**: `/api/docs` (when running)
 - **Health Check**: `/api/health`
-- **DigitalOcean Inference API**: [Documentation](https://docs.digitalocean.com/products/gen-ai/)
+- **DigitalOcean Inference API**: [Documentation](https://docs.digitalocean.com/products/gradientai/)
 - **LangGraph**: [Framework Documentation](https://langchain-ai.github.io/langgraph/) 
