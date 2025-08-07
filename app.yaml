@@ -15,7 +15,7 @@ services:
     routes:
       - path: /api
     health_check:
-      http_path: /api/health
+      http_path: /health
       initial_delay_seconds: 10
       period_seconds: 10
       timeout_seconds: 5
@@ -26,6 +26,10 @@ services:
         value: "8000"
       - key: HOST
         value: "0.0.0.0"
+      - key: NODE_ENV
+        value: "production"
+      - key: ALLOWED_ORIGINS
+        value: ${frontend.PUBLIC_URL}
       - key: DIGITALOCEAN_INFERENCE_KEY
         value: ${DIGITALOCEAN_INFERENCE_KEY}
         type: SECRET

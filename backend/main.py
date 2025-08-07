@@ -110,13 +110,24 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Add CORS middleware for frontend communication
+# Get allowed origins from environment variable for security
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",") if os.getenv("ALLOWED_ORIGINS") else []
+
+# Add localhost for development
+if os.getenv("NODE_ENV", "development") == "development":
+    ALLOWED_ORIGINS.extend(["http://localhost:3000", "http://127.0.0.1:3000"])
+
+# Remove empty strings and duplicates
+ALLOWED_ORIGINS = list(set([origin.strip() for origin in ALLOWED_ORIGINS if origin.strip()]))
+
+print(f"🔒 CORS allowed origins: {ALLOWED_ORIGINS}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend domain
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type", "Authorization"],
 )
 
 # API Routes - remove /api prefix since DigitalOcean handles routing
