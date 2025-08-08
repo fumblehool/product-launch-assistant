@@ -88,8 +88,10 @@ product-launch-assistant/
    cd backend/
    pip install -r requirements.txt
    
-   # Create .env file
-   echo "DIGITALOCEAN_INFERENCE_KEY=your_api_key_here" > .env
+   # Copy and configure environment variables
+   cp .env.example .env
+   # Edit .env and update DIGITALOCEAN_INFERENCE_KEY with your actual API key
+   # For ALLOWED_ORIGINS in production, see deployment steps below
    
    # Start backend
    python main.py
@@ -129,8 +131,7 @@ product-launch-assistant/
 - Environment Variables:
   ```
   DIGITALOCEAN_INFERENCE_KEY = [your_key] (SECRET)
-  PORT = 8000
-  HOST = 0.0.0.0
+  ALLOWED_ORIGINS=[front-end-app-url]
   ```
 
 **Frontend Service:**
@@ -147,6 +148,8 @@ product-launch-assistant/
   ```
 
 3. **Deploy** and your app will be live with 2 independent services!
+
+4. **Update CORS:** After deployment, manually update the backend's `ALLOWED_ORIGINS` environment variable with the actual frontend URL for security.
 
 ## 📋 **API Usage**
 
