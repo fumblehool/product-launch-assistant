@@ -9,7 +9,7 @@ spec:
     source_dir: frontend
     dockerfile_path: frontend/Dockerfile
     routes:
-    - path: /backend
+    - path: /
     envs:
     - key: REACT_APP_API_URL
       scope: RUN_AND_BUILD_TIME
