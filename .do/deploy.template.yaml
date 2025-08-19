@@ -22,7 +22,6 @@ spec:
       repo_clone_url: https://github.com/bnarasimha21/product-launch-assistant.git
     source_dir: backend
     dockerfile_path: backend/Dockerfile
+    http_port: 8000
     routes:
     - path: /backend
-    internal_ports: [8000]
-
