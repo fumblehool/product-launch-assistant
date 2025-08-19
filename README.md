@@ -1,5 +1,7 @@
 # Product Launch Assistant
 
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/bnarasimha21/product-launch-assistant/bnarasimha21/product-launch-assistant/tree/main)
+
 A comprehensive AI-powered product launch planning tool that generates market research, pricing strategies, launch plans, and marketing content using advanced AI workflows.
 
 ## 📸 **Application Screenshots**
@@ -91,7 +93,6 @@ product-launch-assistant/
    # Copy and configure environment variables
    cp .env.example .env
    # Edit .env and update DIGITALOCEAN_INFERENCE_KEY with your actual API key
-   # For ALLOWED_ORIGINS in production, see deployment steps below
    
    # Start backend
    python main.py
@@ -131,7 +132,6 @@ product-launch-assistant/
 - Environment Variables:
   ```
   DIGITALOCEAN_INFERENCE_KEY = [your_key] (SECRET)
-  ALLOWED_ORIGINS=[front-end-app-url]
   ```
 
 **Frontend Service:**
@@ -144,12 +144,10 @@ product-launch-assistant/
 - Routes: `/` (catch-all)
 - Environment Variables:
   ```
-  REACT_APP_API_URL = ${api.PUBLIC_URL}
+  REACT_APP_API_URL = [update_with_backend_url_once_deployed]
   ```
 
 3. **Deploy** and your app will be live with 2 independent services!
-
-4. **Update CORS:** After deployment, manually update the backend's `ALLOWED_ORIGINS` environment variable with the actual frontend URL for security.
 
 ## 📋 **API Usage**
 
@@ -189,23 +187,6 @@ Based on testing, these models have delivered good results:
 
 Configure in `backend/main.py` by updating the `model` parameter.
 
-## 🔧 **Environment Variables**
-
-### **Backend (.env)**
-```bash
-DIGITALOCEAN_INFERENCE_KEY=your_gradient_ai_key_here
-PORT=8000
-HOST=0.0.0.0
-```
-
-### **Frontend (.env)**
-```bash
-# Local development
-REACT_APP_API_URL=http://localhost:8000
-
-# Production (auto-set by DigitalOcean)
-REACT_APP_API_URL=${api.PUBLIC_URL}
-```
 
 ## 🔗 **Links**
 

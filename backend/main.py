@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from langgraph.graph import StateGraph, END
@@ -110,25 +109,7 @@ app = FastAPI(
     redoc_url="/redoc"
 )
 
-# Get allowed origins from environment variable for security
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",") if os.getenv("ALLOWED_ORIGINS") else []
-
-# Add localhost for development
-if os.getenv("NODE_ENV", "development") == "development":
-    ALLOWED_ORIGINS.extend(["http://localhost:3000", "http://127.0.0.1:3000"])
-
-# Remove empty strings and duplicates
-ALLOWED_ORIGINS = list(set([origin.strip() for origin in ALLOWED_ORIGINS if origin.strip()]))
-
-print(f"🔒 CORS allowed origins: {ALLOWED_ORIGINS}")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type", "Authorization"],
-)
+# No CORS configuration needed - both frontend and backend deployed on same domain
 
 # API Routes - remove /api prefix since DigitalOcean handles routing
 @app.post("/launch_assistant", response_model=LaunchResponse)
