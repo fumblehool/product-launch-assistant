@@ -4,8 +4,8 @@ spec:
   services:
   - name: frontend
     git:
-      branch: main
-      repo_clone_url: https://github.com/bnarasimha21/product-launch-assistant.git
+      branch: test
+      repo_clone_url: https://github.com/fumblehool/product-launch-assistant.git
     source_dir: frontend
     dockerfile_path: frontend/Dockerfile
     http_port: 3000
@@ -18,8 +18,8 @@ spec:
 
   - name: backend
     git:
-      branch: main
-      repo_clone_url: https://github.com/bnarasimha21/product-launch-assistant.git
+      branch: test
+      repo_clone_url: https://github.com/fumblehool/product-launch-assistant.git
     source_dir: backend
     dockerfile_path: backend/Dockerfile
     http_port: 8000
