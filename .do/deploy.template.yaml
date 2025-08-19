@@ -23,5 +23,3 @@ spec:
     source_dir: backend
     dockerfile_path: backend/Dockerfile
     internal_ports: [8000]
-    routes:
-    - path: /backend
