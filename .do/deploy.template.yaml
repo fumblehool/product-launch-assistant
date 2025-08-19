@@ -1,0 +1,28 @@
+spec:
+  name: sample-monorepo
+
+  services:
+  - name: frontend
+    git:
+      branch: main
+      repo_clone_url: https://github.com/bnarasimha21/product-launch-assistant.git
+    source_dir: frontend
+    dockerfile_path: frontend/Dockerfile
+    routes:
+    - path: /backend
+    envs:
+    - key: REACT_APP_API_URL
+      scope: RUN_AND_BUILD_TIME
+      value: http://backend:8000
+
+  - name: backend
+    git:
+      branch: main
+      repo_clone_url: https://github.com/bnarasimha21/product-launch-assistant.git
+    source_dir: backend
+    dockerfile_path: backend/Dockerfile
+    routes:
+    - path: /backend
+
+
+
