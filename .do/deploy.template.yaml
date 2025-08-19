@@ -5,7 +5,6 @@ spec:
   - name: frontend
     git:
       branch: test
-      deploy_on_push: true
       repo_clone_url: https://github.com/fumblehool/product-launch-assistant.git
     source_dir: frontend
     dockerfile_path: frontend/Dockerfile
@@ -20,7 +19,6 @@ spec:
   - name: backend
     git:
       branch: test
-      deploy_on_push: true
       repo_clone_url: https://github.com/fumblehool/product-launch-assistant.git
     source_dir: backend
     dockerfile_path: backend/Dockerfile
